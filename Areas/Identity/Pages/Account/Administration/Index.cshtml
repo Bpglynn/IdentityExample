@@ -1,0 +1,109 @@
+﻿@page
+@model IdentityExample.Areas.Identity.Pages.Account.Administration.IndexModel
+@{
+    ViewData["Title"] = "User & Role Administration";
+}
+
+<h4>User Administration</h4>
+<p class="text-danger">@TempData["StatusMessage"]</p>
+<div class="row">
+    <div class="col">
+       <table class="table">
+           <thead>
+               <tr>
+                   <th>
+                       @Html.DisplayNameFor(model => model.Users[0].Id)
+                   </th>
+                   <th>
+                       @Html.DisplayNameFor(model => model.Users[0].UserName)
+                   </th>
+                   <th>
+                       @Html.DisplayNameFor(model => model.Users[0].FirstName)
+                   </th>
+                   <th>
+                       @Html.DisplayNameFor(model => model.Users[0].LastName)
+                   </th>
+                   <th>
+                       Actions
+                   </th>
+               </tr>
+           </thead>
+           <tbody>
+               @foreach (var u in @Model.Users)
+               {
+               <tr>
+                   <td>
+                       @u.Id
+                   </td>
+                   <td>
+                       @u.UserName
+                   </td>
+                   <td>
+                       @u.FirstName
+                   </td>
+                   <td>
+                       @u.LastName
+                   </td>
+                   <td>
+                       <a asp-page="./Users/Edit" asp-route-id="@u.Id">Edit</a> |
+                       <a asp-page="./Users/Details/" asp-route-id="@u.Id">Details</a> |
+                       <a asp-page="./Users/Delete" asp-route-id="@u.Id">Delete</a>
+                   </td>
+               </tr>
+               }
+           </tbody>
+       </table>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        <h4>Role Administration</h4>
+    </div>
+    <div class="col-md-4 text-right">
+        <a class="btn btn-primary btn-sm" asp-page="./Roles/Create">Create Role</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Roles[0].Id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Roles[0].Name)
+                    </th>
+                    <th>
+                        Users
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var r in @Model.Roles)
+                {
+                    <tr>
+                        <td>
+                            @r.Id
+                        </td>
+                        <td>
+                            @r.Name
+                        </td>
+                        <td>
+                            Users
+                        </td>
+                        <td>
+                            <a asp-page="./Roles/Edit" asp-route-id="@r.Id">Edit</a> |
+                            <a asp-page="./Roles/Details/" asp-route-id="@r.Id">Details</a> |
+                            <a asp-page="./Roles/Delete" asp-route-id="@r.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

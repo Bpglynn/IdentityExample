@@ -1,0 +1,52 @@
+﻿@page "{id}"
+@model IdentityExample.Areas.Identity.Pages.Account.Administration.Users.AdminEditModel
+@{
+    ViewData["Title"] = "Edit User Details";
+}
+
+<h4>@ViewData["Title"]</h4>
+<form asp-route-id="@Model.UserDetails.Id" method="post">
+    <p><b>@Html.DisplayNameFor(model => model.UserDetails.Id):</b> @Html.DisplayFor(model => model.UserDetails.Id)</p>
+    <hr />
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label asp-for="Input.UserName"></label>
+                <input asp-for="Input.UserName" class="form-control" value="@Model.UserDetails.UserName" />
+                <span asp-validation-for="Input.UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Email"></label>
+                <input asp-for="Input.Email" class="form-control" value="@Model.UserDetails.Email" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.EmailConfirmed"></label>
+                <input asp-for="Input.EmailConfirmed" class="form-control" value="@Model.UserDetails.EmailConfirmed" />
+                <span asp-validation-for="Input.EmailConfirmed" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label asp-for="Input.FirstName"></label>
+                <input asp-for="Input.FirstName" class="form-control" value="@Model.UserDetails.FirstName" />
+                <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.LastName"></label>
+                <input asp-for="Input.LastName" class="form-control" value="@Model.UserDetails.LastName" />
+                <span asp-validation-for="Input.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.LockoutEnabled"></label>
+                <input asp-for="Input.LockoutEnabled" class="form-control" value="@Model.UserDetails.LockoutEnabled" />
+                <span asp-validation-for="Input.LockoutEnabled" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a class="btn btn-primary" asp-page="../Index">Back to Index</a>
+        <a class="btn btn-danger" asp-page="./Delete" asp-route-id="@Model.UserDetails.Id">Delete</a>
+    </div>
+</form>

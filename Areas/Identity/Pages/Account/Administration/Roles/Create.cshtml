@@ -1,0 +1,23 @@
+﻿@page
+@model IdentityExample.Areas.Identity.Pages.Account.Administration.Roles.CreateModel
+@{
+    ViewData["Title"] = "Create Role";
+}
+<h4>@ViewData["Title"]</h4>
+<p class="text-danger">@TempData["StatusMessage"]</p>
+<form method="post">
+    <hr />
+    <div class="row">
+        <div class="offset-3 col-sm-6">
+            <div class="form-group">
+                <label asp-for="Input.Name"></label>
+                <input asp-for="Input.Name" class="form-control" />
+                <span asp-validation-for="Input.Name" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a class="btn btn-primary" asp-page="../Index">Back to Index</a>
+    </div>
+</form>

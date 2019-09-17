@@ -1,0 +1,46 @@
+﻿@page "{id}"
+@model IdentityExample.Areas.Identity.Pages.Account.Administration.Roles.DetailsModel
+@{
+    ViewData["Title"] = "Role Details";
+}
+
+<h4>@ViewData["Title"]</h4>
+<p class="text-danger">@TempData["StatusMessage"]</p>
+<div class="row">
+    <div class="col-sm-12">
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.RoleDetails.Name)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.RoleDetails.Name)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.RoleDetails.Id)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.RoleDetails.Id)
+            </dd>
+            <dt class="col-sm-2">
+                Users
+            </dt>
+            <dd class="col-sm-10">
+                @if (@Model.UserList != null && @Model.UserList.Count > 0)
+                {
+                    @foreach (var u in @Model.UserList)
+                    {
+                        <a asp-page="../Users/Details" asp-route-id="@u.Id">@u.UserName </a>
+                    }
+                }
+                else
+                {
+                    <p>No users are assigned to this role.</p>
+                }
+            </dd>
+        </dl>
+        <div class="text-center">
+            <a class="btn btn-primary" asp-page="../Index">Back to Index</a>
+            <a class="btn btn-primary" asp-page="./Edit" asp-route-id="@Model.RoleDetails.Id">Edit</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,78 @@
+﻿@page "{id}"
+@model IdentityExample.Areas.Identity.Pages.Account.Administration.Users.DeleteModel
+@{
+    ViewData["Title"] = "Delete User";
+}
+
+<h4>@ViewData["Title"]</h4>
+    <p class="text-danger">@TempData["StatusMessage"]</p>
+<div class="row">
+    <div class="col-sm-12">
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.UserDetails.Id)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.UserDetails.Id)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.UserDetails.UserName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.UserDetails.UserName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.UserDetails.Email)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.UserDetails.Email)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.UserDetails.FirstName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.UserDetails.FirstName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.UserDetails.LastName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.UserDetails.LastName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.UserDetails.EmailConfirmed)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.UserDetails.EmailConfirmed)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.UserDetails.AccessFailedCount)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.UserDetails.AccessFailedCount)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.UserDetails.LockoutEnabled)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.UserDetails.LockoutEnabled)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.UserDetails.LockoutEnd)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.UserDetails.LockoutEnd)
+            </dd>
+        </dl>
+        <div class="text-center">
+            <h5 class="text-danger">Do you want to delete this user?</h5>
+            <p>This action will delete the user from the database completely.</p>
+            <form method="post">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+            <br />
+            <a class="btn btn-primary" asp-page="../Index">Back to Index</a>
+            <a class="btn btn-primary" asp-page="./Edit" asp-route-id="@Model.UserDetails.Id">Edit</a>
+        </div>
+    </div>
+</div>

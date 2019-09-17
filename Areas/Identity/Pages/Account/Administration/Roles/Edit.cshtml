@@ -1,0 +1,123 @@
+﻿@page "{id}"
+@model IdentityExample.Areas.Identity.Pages.Account.Administration.Roles.EditModel
+@{
+    ViewData["Title"] = "Role Details";
+}
+
+<h4>@ViewData["Title"]</h4>
+<p class="text-danger">@TempData["ErrorMessage"]</p>
+<div class="row">
+    <div class="container">
+        <dl>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.RoleDetails.Id)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.RoleDetails.Id)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.RoleDetails.Name)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.RoleDetails.Name)
+            </dd>
+        </dl>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="container">
+        <form asp-route-id="@Model.RoleDetails.Id" class="form-group" method="post">
+            <h4>Edit Role Properties Below:</h4>
+            <div class="offset-2 col-md-8">
+                <div class="form-group">
+                    <label asp-for="Input.Name"></label>
+                    <input asp-for="Input.Name" class="form-control" value="@Model.RoleDetails.Name" />
+                    <span asp-validation-for="Input.Name" class="text-danger"></span>
+                </div>
+
+                <h5>Users currently in role:</h5>
+                <table class="table text-center">
+                    <thead>
+                        <tr>
+                            <th>User Id</th>
+                            <th>User Name</th>
+                            <th>Unassign</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.members.Count() == 0 || Model.members == null)
+                        {
+                            <tr>
+                                <td colspan="3">
+                                    No user accounts are currently assigned to this role.
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            @foreach (var m in Model.members)
+                            {
+                                <tr>
+                                    <td>
+                                        @m.Id
+                                    </td>
+                                    <td>
+                                        <a asp-page="../Users/Details" asp-route-id="@m.Id">@m.UserName </a>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="Input.RemoveUsers" value="@m.Id">
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+
+                <h5>Users not in role:</h5>
+                <table class="table text-center">
+                    <thead>
+                        <tr>
+                            <th>User Id</th>
+                            <th>User Name</th>
+                            <th>Assign</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.nonMembers.Count() == 0 || Model.nonMembers == null)
+                        {
+                            <tr>
+                                <td colspan="3">
+                                    All user accounts are assigned to this role.
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            @foreach (var nm in Model.nonMembers)
+                            {
+                                <tr>
+                                    <td>
+                                        @nm.Id
+                                    </td>
+                                    <td>
+                                        <a asp-page="../Users/Details" asp-route-id="@nm.Id">@nm.UserName </a>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="Input.AddUsers" value="@nm.Id">
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <a class="btn btn-primary" asp-page="../Index">Back to Index</a>
+                <a class="btn btn-primary" asp-page="./Delete" asp-route-id="@Model.RoleDetails.Id">Edit</a>
+            </div>
+        </form>
+    </div>
+</div>
